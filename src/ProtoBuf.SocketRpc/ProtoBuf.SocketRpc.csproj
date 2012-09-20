@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\redist\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="protobuf-net">
       <HintPath>..\redist\protobuf-net.dll</HintPath>
     </Reference>
@@ -43,12 +46,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\RpcClient.cs" />
+    <Compile Include="Client\ProtobufSocketRpcClientException.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="Client\Net\ConnectionPool.cs" />
+    <Compile Include="Client\Net\Helper\PoolSocket.cs" />
+    <Compile Include="Client\Net\Helper\SocketAdapter.cs" />
+    <Compile Include="Client\Net\IConnectionPool.cs" />
+    <Compile Include="Client\Net\ISocket.cs" />
+    <Compile Include="Client\Net\PoolExhaustedException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rpc.cs" />
+    <Compile Include="Server\AClientRequestHandler.cs" />
+    <Compile Include="Server\IClientHandler.cs" />
+    <Compile Include="Server\IClientHandlerFactory.cs" />
+    <Compile Include="Server\ICommandHandler.cs" />
+    <Compile Include="Server\RpcServer.cs" />
+    <Compile Include="Server\DispatchResponse.cs" />
+    <Compile Include="Server\Sync\ISyncCommandDispatcher.cs" />
+    <Compile Include="Server\Sync\SyncClientHandler.cs" />
+    <Compile Include="Server\Sync\SyncClientHandlerFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="rpc.proto" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

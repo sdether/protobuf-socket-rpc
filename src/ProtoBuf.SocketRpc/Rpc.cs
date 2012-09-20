@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 // Generated from: rpc.proto
-namespace protobuf.socketrpc {
+namespace ProtoBuf.SocketRpc {
     [global::System.Serializable, global::ProtoBuf.ProtoContract(Name = @"Request")]
     public partial class Request : global::ProtoBuf.IExtensible {
         public Request() { }
@@ -64,10 +64,10 @@ namespace protobuf.socketrpc {
             set { _callback = value; }
         }
 
-        private protobuf.socketrpc.ErrorReason _error_reason = protobuf.socketrpc.ErrorReason.BAD_REQUEST_DATA;
+        private ErrorReason _error_reason = ErrorReason.BAD_REQUEST_DATA;
         [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name = @"error_reason", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-        [global::System.ComponentModel.DefaultValue(protobuf.socketrpc.ErrorReason.BAD_REQUEST_DATA)]
-        public protobuf.socketrpc.ErrorReason error_reason {
+        [global::System.ComponentModel.DefaultValue(ErrorReason.BAD_REQUEST_DATA)]
+        public ErrorReason error_reason {
             get { return _error_reason; }
             set { _error_reason = value; }
         }
