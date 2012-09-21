@@ -63,9 +63,12 @@
     <Compile Include="Server\ICommandHandler.cs" />
     <Compile Include="Server\RpcServer.cs" />
     <Compile Include="Server\DispatchResponse.cs" />
+    <Compile Include="Server\RpcServerBuilder.cs" />
     <Compile Include="Server\Sync\ISyncCommandDispatcher.cs" />
+    <Compile Include="Server\Sync\ISyncServerBuilder.cs" />
     <Compile Include="Server\Sync\SyncClientHandler.cs" />
     <Compile Include="Server\Sync\SyncClientHandlerFactory.cs" />
+    <Compile Include="Server\Sync\SyncCommandDispatcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="rpc.proto" />
