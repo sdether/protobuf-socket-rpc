@@ -1,9 +1,9 @@
 /*
- * MindTouch.Clacks
+ * ProtoBuf.SocketRpc
  * 
- * Copyright (C) 2011 Arne F. Claassen
+ * Copyright (C) 2012 Arne F. Claassen
  * geekblog [at] claassen [dot] net
- * http://github.com/sdether/MindTouch.Clacks
+ * https://github.com/sdether/protobuf-socket-rpc
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,9 @@
  * limitations under the License.
  */
 using System;
+using System.Linq;
 using System.Net;
+using System.Reflection;
 using ProtoBuf.SocketRpc.Server.Sync;
 
 namespace ProtoBuf.SocketRpc.Server {
@@ -35,12 +37,13 @@ namespace ProtoBuf.SocketRpc.Server {
             _endPoint = endPoint;
         }
 
-        public RpcServer Build() {
+        public RpcServer Start() {
             return new RpcServer(_endPoint, new SyncClientHandlerFactory(_dispatcher));
         }
 
         ISyncServerBuilder ISyncServerBuilder.WithService<TService>(TService handler) {
-            throw new NotImplementedException();
+            _dispatcher.AddService(handler);
+            return this;
         }
 
         ISyncServerBuilder ISyncServerBuilder.WithHandler(string serviceName, string methodName, Func<Request, Response> handler) {
@@ -49,11 +52,13 @@ namespace ProtoBuf.SocketRpc.Server {
         }
 
         public ISyncServerBuilder WithDisconnectionHandler(string serviceName, string methodName, Func<Request, Response> handler) {
-            throw new NotImplementedException();
+            _dispatcher.AddDisconnectionHandler(serviceName, methodName, handler);
+            return this;
         }
 
         public ISyncServerBuilder WithDisconnectionHandler(string serviceName, string methodName, Response staticResponse) {
-            throw new NotImplementedException();
+            _dispatcher.AddDisconnectionHandler(serviceName, methodName, staticResponse);
+            return this;
         }
     }
 }
